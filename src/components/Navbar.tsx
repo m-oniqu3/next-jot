@@ -11,8 +11,6 @@ const Navbar = () => {
 
   const button = pathname === "/register" ? "Login" : "Register";
 
-  console.log(pathname);
-
   return (
     <nav>
       <Container className="flex justify-between items-center">
@@ -25,7 +23,7 @@ const Navbar = () => {
         />
         <Link
           href="/login"
-          className="bg-black text-white px-4 py-1.5 w-fit hover:bg-gray-900 duration-300"
+          className="bg-black text-white px-4 py-1.5 w-fit hover:bg-gray-900 rounded-md duration-300"
         >
           {button}
         </Link>

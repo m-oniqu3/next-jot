@@ -8,12 +8,9 @@ const Register = () => {
 
   return (
     <div className="max-w-xs mx-auto">
-      <div className="flex flex-col h-[90vh] justify-center items-center gap-4">
+      <div className="flex flex-col h-[80vh] justify-center items-center gap-5">
         <FormTitle heading={heading} paragraph={paragraph} variant="medium" />
         <Form />
-        <button className="bg-black text-white px-4 py-1.5 w-full hover:bg-gray-900 duration-300">
-          Register
-        </button>
       </div>
     </div>
   );

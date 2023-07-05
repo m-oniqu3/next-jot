@@ -10,9 +10,9 @@ const FormTitle = (props: Props) => {
   const headingSize = variant === "medium" ? "text-2xl" : "text-4xl";
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1">
       <h1 className={`${headingSize}  font-bold`}>{heading}</h1>
-      <p className="font-light">{paragraph}</p>
+      <p className="font-light text-sm">{paragraph}</p>
     </div>
   );
 };
