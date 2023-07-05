@@ -10,7 +10,7 @@ export default function Home() {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <Link
             href="/register"
-            className="bg-neutral-700 rounded-md text-white px-4 py-1.5 w-fit hover:bg-neutral-900 duration-300"
+            className="bg-black text-white px-4 py-1.5 w-fit hover:bg-gray-900 duration-300"
           >
             Get Started
           </Link>

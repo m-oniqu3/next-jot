@@ -1,3 +1,4 @@
+import Container from "@/components/Container";
 import Navbar from "@/components/Navbar";
 import React, { Fragment } from "react";
 
@@ -9,7 +10,9 @@ const AuthLayout = ({ children }: Props) => {
   return (
     <Fragment>
       <Navbar />
-      <main>{children}</main>
+      <Container>
+        <main>{children}</main>
+      </Container>
     </Fragment>
   );
 };
