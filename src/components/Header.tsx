@@ -10,6 +10,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   const button = pathname === "/register" ? "Login" : "Register";
+  const path = pathname === "/register" ? "/login" : "/register";
 
   return (
     <nav>
@@ -22,8 +23,8 @@ const Navbar = () => {
           className="relative -left-2"
         />
         <Link
-          href="/login"
-          className="bg-black text-white px-4 py-1.5 w-fit hover:bg-gray-900 rounded-md duration-300"
+          href={path}
+          className="bg-black text-white px-4 py-1.5 w-fit hover:bg-gray-900 rounded-md duration-300 text-[.9rem] "
         >
           {button}
         </Link>

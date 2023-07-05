@@ -10,7 +10,7 @@ const Register = () => {
     <div className="max-w-xs mx-auto">
       <div className="flex flex-col h-[80vh] justify-center items-center gap-5">
         <FormTitle heading={heading} paragraph={paragraph} variant="medium" />
-        <Form />
+        <Form buttonText="Register" />
       </div>
     </div>
   );

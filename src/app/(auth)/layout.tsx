@@ -1,5 +1,5 @@
 import Container from "@/components/Container";
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 import React, { Fragment } from "react";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 const AuthLayout = ({ children }: Props) => {
   return (
     <Fragment>
-      <Navbar />
+      <Header />
       <Container>
         <main>{children}</main>
       </Container>
