@@ -6,7 +6,7 @@ import Container from "@/components/Container";
 import Image from "next/image";
 import Link from "next/link";
 
-const Navbar = () => {
+const Header = () => {
   const pathname = usePathname();
 
   const button = pathname === "/register" ? "Login" : "Register";
@@ -33,4 +33,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

@@ -1,12 +1,20 @@
+"use client";
+
 type Props = {
   children: string;
+  onClick: () => void;
 };
 
 const Button = (props: Props) => {
-  const { children } = props;
+  const { children, onClick } = props;
+
+  const handleClick = () => onClick();
 
   return (
-    <button className=" bg-black text-white px-4 py-1.5 w-full hover:bg-gray-900 rounded-md duration-300 text-[.9rem]">
+    <button
+      onClick={handleClick}
+      className=" bg-black text-white px-4 py-1.5 w-full hover:bg-gray-900 rounded-md duration-300 text-[.9rem]"
+    >
       {children}
     </button>
   );
