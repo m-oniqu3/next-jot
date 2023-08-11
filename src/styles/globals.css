@@ -8,13 +8,11 @@
   box-sizing: border-box;
 }
 
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -28,17 +26,25 @@
   .textarea {
     border: none;
     border-left: 8px solid rgba(55, 55, 54, 0.23);
-    width: 100%;
+    /* width: 100%; */
     resize: none;
-
-    padding: 0 .5rem;
-
+    padding: 0 0.5rem;
   }
 
   .textarea:focus {
     outline: none;
     border-left: 8px solid rgba(55, 55, 54, 0.23);
     width: 100%;
+  }
+
+  .bg {
+    background-color: rgba(55, 55, 54, 0.23);
+  }
+
+  .checked {
+
+    accent-color: rgb(55, 55, 54);
+    cursor: pointer;
 
   }
 }
