@@ -23,3 +23,22 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+@layer utilities {
+  .textarea {
+    border: none;
+    border-left: 8px solid rgba(55, 55, 54, 0.23);
+    width: 100%;
+    resize: none;
+
+    padding: 0 .5rem;
+
+  }
+
+  .textarea:focus {
+    outline: none;
+    border-left: 8px solid rgba(55, 55, 54, 0.23);
+    width: 100%;
+
+  }
+}

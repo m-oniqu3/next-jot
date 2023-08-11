@@ -11,7 +11,7 @@ const NotesLayout = ({ children }: Props) => {
       <Navbar />
 
       <Container>
-        <main>{children}</main>
+        <main className="pt-9">{children}</main>
       </Container>
     </div>
   );
