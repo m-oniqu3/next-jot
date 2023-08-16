@@ -5,7 +5,12 @@ type Props = {
 
 const Container = ({ children, className }: Props) => {
   return (
-    <div className={`w-[95%] h-[10vh] my-0 mx-auto ${className}`}>
+    // todo fix media query
+    <div
+      className={`w-[85%] h-[10vh] my-0 mx-auto  ${
+        className ?? ""
+      } md:w-[95%] md:bg-red-500`}
+    >
       {children}
     </div>
   );

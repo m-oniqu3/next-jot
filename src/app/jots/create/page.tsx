@@ -18,7 +18,7 @@ const CreateNote = () => {
   };
 
   return (
-    <form className="w-full max-w-xl mx-auto flex flex-col gap-4 text-[#373736] relative">
+    <form className="w-full max-w-xl mx-auto flex flex-col gap-5 text-[#373736] relative">
       <figure className="bg p-2 h-[40px] w-[40px] rounded-[100%] absolute right-0 cursor-pointer hover:bg-black transition-all ease-in-out duration-300">
         <Image
           src="/assets/checkmark.svg"

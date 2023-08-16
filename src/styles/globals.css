@@ -26,7 +26,6 @@
   .textarea {
     border: none;
     border-left: 8px solid rgba(55, 55, 54, 0.23);
-    /* width: 100%; */
     resize: none;
     padding: 0 0.5rem;
   }
@@ -41,10 +40,8 @@
     background-color: rgba(55, 55, 54, 0.23);
   }
 
-  .checked {
 
-    accent-color: rgb(55, 55, 54);
-    cursor: pointer;
 
-  }
+
+
 }
