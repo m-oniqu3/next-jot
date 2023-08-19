@@ -6,7 +6,13 @@ import {
   getAuth,
   onAuthStateChanged,
 } from "firebase/auth";
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getFirestore,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
 
 //Your web app's Firebase configuration
 const firebaseConfig = {
@@ -67,4 +73,37 @@ export async function getUserName() {
   }
 
   return uid;
+}
+
+// export async function getUserJots(uid: string) {
+//   const docRef = doc(db, "jots", uid);
+//   const docSnap = await getDoc(docRef);
+
+//   let jots: { [key: string]: Jot } = {};
+
+//   if (docSnap.exists()) {
+//     jots = docSnap.data();
+//   }
+
+//   return jots;
+// }
+
+export function getUserJots(
+  uid: string,
+  callback: (jots: { [key: string]: Jot }) => void
+) {
+  const docRef = doc(db, "jots", uid);
+
+  const unsubscribe = onSnapshot(docRef, (docSnap) => {
+    let jots: { [key: string]: Jot } = {};
+
+    if (docSnap.exists()) {
+      jots = docSnap.data();
+    }
+
+    callback(jots);
+  });
+
+  // Return a function to unsubscribe from the snapshot listener when needed
+  return unsubscribe;
 }
