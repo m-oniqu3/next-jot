@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { RefObject, useRef } from "react";
+import { RefObject, useRef, useState } from "react";
 
 const CreateNote = () => {
   const titleRef = useRef<HTMLTextAreaElement>(null);
   const subtitle = useRef<HTMLTextAreaElement>(null);
   const content = useRef<HTMLTextAreaElement>(null);
+  const [category, setCategory] = useState("");
+  const [isValidForm, setIsValidForm] = useState(false);
 
   const handleInput = function (
     e: React.ChangeEvent<HTMLTextAreaElement>,
@@ -17,9 +19,46 @@ const CreateNote = () => {
     ref.current!.style.height = `${e.target.scrollHeight}px`;
   };
 
+  const handleRadioInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCategory(e.target.value);
+  };
+
+  const handleFormValidity = () => {
+    const validTitle = titleRef && titleRef.current && titleRef.current.value;
+    const validSubtitle =
+      subtitle && subtitle.current && subtitle.current.value;
+    const validContent = content && content.current && content.current.value;
+
+    if (validTitle && validSubtitle && validContent && !!category) {
+      setIsValidForm(true);
+    } else setIsValidForm(false);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(
+      titleRef.current!.value,
+      subtitle.current!.value,
+      content.current!.value,
+      category
+    );
+  };
+
+  const disabledStyles = !isValidForm
+    ? "bg cursor-not-allowed"
+    : "bg-black  transition-all ease-in-out duration-300 cursor-pointer";
+
   return (
-    <form className="w-full max-w-xl mx-auto flex flex-col gap-5 text-[#373736] relative">
-      <figure className="bg p-2 h-[40px] w-[40px] rounded-[100%] absolute right-0 cursor-pointer hover:bg-black transition-all ease-in-out duration-300">
+    <form
+      className="w-full max-w-xl mx-auto flex flex-col gap-5 text-[#373736] relative"
+      onChange={handleFormValidity}
+      onSubmit={handleSubmit}
+    >
+      <button
+        type="submit"
+        disabled={!isValidForm}
+        className={` p-2 h-[40px] w-[40px] rounded-[100%] absolute right-0 ${disabledStyles} `}
+      >
         <Image
           src="/assets/checkmark.svg"
           alt="checkmark"
@@ -27,7 +66,7 @@ const CreateNote = () => {
           width={20}
           height={20}
         />
-      </figure>
+      </button>
       <textarea
         className="textarea text-3xl font-bold h-10 focus:ring-0 w-[88%]"
         placeholder="title..."
@@ -46,7 +85,7 @@ const CreateNote = () => {
         ref={subtitle}
       ></textarea>
 
-      <div className="grid grid-cols-3  max-w-xs">
+      <div className="grid grid-cols-3 max-w-xs" onChange={handleRadioInput}>
         <span className="flex justify-start items-center gap-1">
           <input
             type="radio"
@@ -79,7 +118,7 @@ const CreateNote = () => {
       </div>
 
       <textarea
-        className="textarea  text-base h-32 focus:ring-0 "
+        className="textarea text-base h-32 focus:ring-0 "
         placeholder="jot it down..."
         onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
           handleInput(e, content, 8)

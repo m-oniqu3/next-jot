@@ -1,5 +1,8 @@
+import Welcome from "@/components/Welcome";
+
+/* eslint-disable react/no-unescaped-entities */
 const Jots = () => {
-  return <div>Jots</div>;
+  return <Welcome />;
 };
 
 export default Jots;
