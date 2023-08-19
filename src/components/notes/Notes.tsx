@@ -7,8 +7,7 @@ interface Props {
 
 const Notes = (props: Props) => {
   const { data } = props;
-  const jots = Object.values(data);
-  console.log(Object.values(data));
+  const jots = Object.values(data).sort((a, b) => b.id - a.id);
 
   const renderContent = jots.map((jot) => <Note key={jot.id} data={jot} />);
 
@@ -17,9 +16,7 @@ const Notes = (props: Props) => {
   }
 
   return (
-    <div className="grid grid-cols-1  gap-8  xs:grid-cols-2 lg:grid-cols-3 sm:gap-16">
-      {renderContent}{" "}
-    </div>
+    <div className="masonry sm:masonry-sm md:masonry-md">{renderContent}</div>
   );
 };
 

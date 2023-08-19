@@ -34,9 +34,11 @@ const Jots = () => {
   const content = (() => {
     if (loading) {
       return <Loading />;
+    } else if (Object.keys(jots).length > 1) {
+      return <Notes data={jots} />;
     } else if (Object.keys(jots).length === 0) {
       return <Welcome userName={userName} />;
-    } else return <Notes data={jots} />;
+    } else return null;
   })();
 
   console.log(userName, jots);
