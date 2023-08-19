@@ -99,7 +99,10 @@ const CreateNote = () => {
         ref={subtitle}
       ></textarea>
 
-      <div className="grid grid-cols-3 max-w-xs" onChange={handleRadioInput}>
+      <div
+        className="grid grid-cols-3 max-w-xs border-l-8 border-[#23373736] pl-4"
+        onChange={handleRadioInput}
+      >
         <span className="flex justify-start items-center gap-1">
           <input
             type="radio"

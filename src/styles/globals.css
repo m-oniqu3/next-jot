@@ -30,7 +30,7 @@
     border: none;
     border-left: 8px solid rgba(55, 55, 54, 0.23);
     resize: none;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
 
   .textarea:focus {
@@ -50,19 +50,15 @@
     }
 
     .masonry-sm {
-      column-gap: 1.5em;
+      column-gap: 2.5em;
       column-count: 2;
     }
 
     .masonry-md {
-      column-gap: 1.5em;
+      column-gap: 3em;
       column-count: 3;
     }
 
-    .masonry-lg {
-      column-gap: 1.5em;
-      column-count: 4;
-    }
 
 
     .break-inside {
