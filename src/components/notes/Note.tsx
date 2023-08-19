@@ -7,10 +7,14 @@ interface Props {
 const Note = (props: Props) => {
   const { data } = props;
   return (
-    <article className="break-inside mb-10 border-l-8 border-orange-200 h-fit pl-4 flex flex-col gap-2">
-      <h2 className="font-bold text-xl md:text-2xl">{data.title}</h2>
-      <p>{data.subtitle}</p>
-    </article>
+    <div className="p-6 rounded-lg shadow-sm border border-gray-100 mb-5 md:mb-10 break-inside">
+      <article className=" h-fit  flex flex-col gap-2 ">
+        <h2 className="font-bold text-xl line-clamp-2 md:text-2xl ">
+          {data.title}
+        </h2>
+        <p>{data.subtitle}</p>
+      </article>
+    </div>
   );
 };
 

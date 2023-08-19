@@ -16,7 +16,9 @@ const Notes = (props: Props) => {
   }
 
   return (
-    <div className="masonry sm:masonry-sm md:masonry-md">{renderContent}</div>
+    <div className="masonry sm:masonry-sm md:masonry-md lg:masonry-lg">
+      {renderContent}
+    </div>
   );
 };
 

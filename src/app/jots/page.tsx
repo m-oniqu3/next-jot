@@ -38,7 +38,7 @@ const Jots = () => {
       return <Notes data={jots} />;
     } else if (Object.keys(jots).length === 0) {
       return <Welcome userName={userName} />;
-    } else return null;
+    } else return <Loading />;
   })();
 
   console.log(userName, jots);
