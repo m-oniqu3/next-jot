@@ -1,7 +1,10 @@
 "use client";
 
+import { createJot } from "@/components/firebase/firebase";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { RefObject, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 const CreateNote = () => {
   const titleRef = useRef<HTMLTextAreaElement>(null);
@@ -9,6 +12,7 @@ const CreateNote = () => {
   const content = useRef<HTMLTextAreaElement>(null);
   const [category, setCategory] = useState("");
   const [isValidForm, setIsValidForm] = useState(false);
+  const router = useRouter();
 
   const handleInput = function (
     e: React.ChangeEvent<HTMLTextAreaElement>,
@@ -36,12 +40,22 @@ const CreateNote = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(
-      titleRef.current!.value,
-      subtitle.current!.value,
-      content.current!.value,
-      category
-    );
+
+    const user = JSON.parse(localStorage.getItem("user") || "");
+
+    if (user) {
+      const data = {
+        id: Date.now(),
+        title: titleRef.current!.value,
+        subtitle: subtitle.current!.value,
+        category,
+        content: content.current!.value,
+      };
+      createJot(user, data).catch((error) => toast.error(error.message));
+
+      toast.success("Jot created");
+      router.push("/jots");
+    }
   };
 
   const disabledStyles = !isValidForm

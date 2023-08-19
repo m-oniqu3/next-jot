@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { Jot } from "@/types/jot";
 import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
@@ -33,6 +34,11 @@ export function createNewUser(name: string, email: string, password: string) {
 
 export async function storeUserInDb(uid: string, name: string, email: string) {
   await setDoc(doc(db, "users", uid), { name, email });
+}
+
+export async function createJot(uid: string, data: Jot) {
+  const ref = doc(db, "jots", uid);
+  await setDoc(ref, { [data.id]: { ...data } }, { merge: true });
 }
 
 onAuthStateChanged(auth, (user) => {

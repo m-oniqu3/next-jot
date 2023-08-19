@@ -2,6 +2,7 @@
 
 /* eslint-disable react/no-unescaped-entities */
 import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 import { getUserName } from "@/components/firebase/firebase";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,7 +23,7 @@ const Welcome = () => {
       .catch((error) => toast.error(error.message));
   }, [user]);
 
-  if (loading) return <p>loading....</p>;
+  if (loading) return <Loading />;
 
   return (
     <section className="h-[80vh] flex justify-center items-center">
