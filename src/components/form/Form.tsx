@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 type Props = {
-  buttonText: string;
+  buttonText: "login" | "register";
 };
 
 const Form = (props: Props) => {
@@ -16,6 +16,7 @@ const Form = (props: Props) => {
   const [password, setPassword] = useState("");
 
   const { buttonText } = props;
+  console.log(buttonText);
 
   const handleClick = () => {
     console.log(name, email, password);
@@ -23,12 +24,14 @@ const Form = (props: Props) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-9 mb-4">
-      <Input
-        type="text"
-        placeholder="Name"
-        state={{ state: name, setState: setName }}
-      />
+    <div className="w-full flex flex-col gap-6 mb-4">
+      {buttonText.toLowerCase() === "register" && (
+        <Input
+          type="text"
+          placeholder="Name"
+          state={{ state: name, setState: setName }}
+        />
+      )}
       <Input
         type="email"
         placeholder="Email"
