@@ -2,7 +2,7 @@
 
 type Props = {
   children: string;
-  onClick: () => void;
+  onClick: (e?: any) => void;
   disabled?: boolean;
   className?: string;
 };

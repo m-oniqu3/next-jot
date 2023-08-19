@@ -1,7 +1,9 @@
 import "@/styles/globals.css";
-import { Rubik } from "next/font/google";
+import { Archivo } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const rubik = Rubik({ subsets: ["latin"] });
+const archivo = Archivo({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -14,8 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={rubik.className}>
-      <body>{children}</body>
+    <html lang="en" className={archivo.className}>
+      <body>
+        {children}
+        <ToastContainer position="top-right" />
+      </body>
     </html>
   );
 }

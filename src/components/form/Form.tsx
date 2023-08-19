@@ -1,9 +1,11 @@
 "use client";
 
 import Button from "@/components/Button";
+import { createNewUser } from "@/components/firebase/firebase";
 import Input from "@/components/form/Input";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 type Props = {
   buttonText: "login" | "register";
@@ -46,11 +48,22 @@ const Form = (props: Props) => {
     // router.push("/jots");
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {};
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (buttonText.toLowerCase() === "register") {
+      createNewUser(name, email, password)
+        .then(() => toast.success("Account created"))
+        .catch((error) => {
+          console.log(error);
+        });
+
+      router.push("/jots");
+    } else {
+    }
+  };
 
   return (
     <div
-      className="w-full flex flex-col gap-6 mb-4"
+      className="w-full flex flex-col gap-4 mb-4"
       onKeyUp={handleCheckFormValidity}
     >
       {buttonText.toLowerCase() === "register" && (
@@ -79,7 +92,10 @@ const Form = (props: Props) => {
         }
       />
 
-      <Button disabled={!isFormValid} onClick={() => handleSubmit}>
+      <Button
+        disabled={!isFormValid}
+        onClick={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}
+      >
         {buttonText}
       </Button>
     </div>
