@@ -14,36 +14,74 @@ const Form = (props: Props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const [inputValidities, setInputValidities] = useState({
+    name: false,
+    email: false,
+    password: false,
+  });
+
+  const handleValidityChange = (inputName: string, isValid: boolean) => {
+    setInputValidities((prevValidities) => ({
+      ...prevValidities,
+      [inputName]: isValid,
+    }));
+  };
 
   const { buttonText } = props;
-  console.log(buttonText);
 
-  const handleClick = () => {
-    console.log(name, email, password);
+  const handleCheckFormValidity = () => {
+    if (buttonText.toLowerCase() === "login") {
+      setIsFormValid(inputValidities.email && inputValidities.password);
+    } else {
+      setIsFormValid(
+        inputValidities.name &&
+          inputValidities.email &&
+          inputValidities.password
+      );
+    }
+
+    // console.log(name, email, password);
     // router.push("/jots");
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {};
+
   return (
-    <div className="w-full flex flex-col gap-6 mb-4">
+    <div
+      className="w-full flex flex-col gap-6 mb-4"
+      onKeyUp={handleCheckFormValidity}
+    >
       {buttonText.toLowerCase() === "register" && (
         <Input
           type="text"
           placeholder="Name"
           state={{ state: name, setState: setName }}
+          isValid={inputValidities.name}
+          onValidityChange={(isValid) => handleValidityChange("name", isValid)}
         />
       )}
       <Input
         type="email"
         placeholder="Email"
         state={{ state: email, setState: setEmail }}
+        isValid={inputValidities.email}
+        onValidityChange={(isValid) => handleValidityChange("email", isValid)}
       />
       <Input
         type="password"
         placeholder="Password"
         state={{ state: password, setState: setPassword }}
+        isValid={inputValidities.password}
+        onValidityChange={(isValid) =>
+          handleValidityChange("password", isValid)
+        }
       />
 
-      <Button onClick={handleClick}>{buttonText}</Button>
+      <Button disabled={!isFormValid} onClick={() => handleSubmit}>
+        {buttonText}
+      </Button>
     </div>
   );
 };

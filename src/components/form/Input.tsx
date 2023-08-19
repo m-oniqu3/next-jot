@@ -3,7 +3,7 @@ import {
   validateName,
   validatePassword,
 } from "@/components/form/validateForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   type: string;
@@ -12,17 +12,26 @@ interface Props {
     state: string;
     setState: (state: string) => void;
   };
+  isValid: boolean;
+  onValidityChange: (isValid: boolean) => void;
 }
+type Feedback = {
+  error: null | string;
+  valid: boolean;
+};
 
 const Input = (props: Props) => {
-  const [feedBack, setFeedBack] = useState<{
-    error: null | string;
-    valid: boolean;
-  }>({ error: null, valid: false });
+  const [feedBack, setFeedBack] = useState<Feedback>({
+    error: null,
+    valid: false,
+  });
+
   const {
     type,
     placeholder,
     state: { state, setState },
+    isValid,
+    onValidityChange,
   } = props;
 
   function validator(type: string) {
@@ -39,8 +48,14 @@ const Input = (props: Props) => {
     setState(e.target.value);
 
     const result = validator(type);
-    if (result) setFeedBack(result(e.target.value));
+    if (result) {
+      setFeedBack(result(e.target.value));
+    }
   };
+
+  useEffect(() => {
+    onValidityChange(feedBack.valid);
+  }, [feedBack]);
 
   return (
     <div>
