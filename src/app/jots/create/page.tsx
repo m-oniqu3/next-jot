@@ -64,7 +64,7 @@ const CreateNote = () => {
 
   return (
     <form
-      className="w-full max-w-xl mx-auto flex flex-col gap-5 text-[#373736] relative"
+      className="w-full max-w-xl mx-auto flex flex-col gap-5  text-[#373736] relative mb-16"
       onChange={handleFormValidity}
       onSubmit={handleSubmit}
     >
@@ -82,7 +82,7 @@ const CreateNote = () => {
         />
       </button>
       <textarea
-        className="textarea text-3xl font-bold h-10 focus:ring-0 w-[88%]"
+        className="textarea text-3xl font-bold h-10 focus:ring-0 w-[88%] border-l-8 "
         placeholder="title..."
         onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
           handleInput(e, titleRef, 2.5)
@@ -91,7 +91,7 @@ const CreateNote = () => {
       ></textarea>
 
       <textarea
-        className="textarea text-xl h-7 focus:ring-0"
+        className="textarea text-xl h-7 focus:ring-0 border-l-8  "
         placeholder="subtitle..."
         onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
           handleInput(e, subtitle, 1.75)
@@ -100,7 +100,7 @@ const CreateNote = () => {
       ></textarea>
 
       <div
-        className="grid grid-cols-3 max-w-xs border-l-8 border-[#23373736] pl-4"
+        className="grid grid-cols-3 max-w-xs border-l-8 border-gray-200   pl-4"
         onChange={handleRadioInput}
       >
         <span className="flex justify-start items-center gap-1">
@@ -135,7 +135,7 @@ const CreateNote = () => {
       </div>
 
       <textarea
-        className="textarea text-base h-32 focus:ring-0 "
+        className="textarea text-base h-32 focus:ring-0 border-l-8 font-light leading-8"
         placeholder="jot it down..."
         onInput={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
           handleInput(e, content, 8)

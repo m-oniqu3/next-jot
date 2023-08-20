@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import {
   doc,
@@ -13,6 +14,7 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 //Your web app's Firebase configuration
 const firebaseConfig = {
@@ -75,18 +77,24 @@ export async function getUserName() {
   return uid;
 }
 
-// export async function getUserJots(uid: string) {
-//   const docRef = doc(db, "jots", uid);
-//   const docSnap = await getDoc(docRef);
+export async function fetchUserData(uid: string) {
+  const docRef = doc(db, "jots", uid);
+  const docSnap = await getDoc(docRef);
 
-//   let jots: { [key: string]: Jot } = {};
+  let jots: { [key: string]: Jot } = {};
 
-//   if (docSnap.exists()) {
-//     jots = docSnap.data();
-//   }
+  if (docSnap.exists()) {
+    jots = docSnap.data();
+  }
 
-//   return jots;
-// }
+  return jots;
+}
+
+export async function getNoteDetails(uid: string, jot_id: string) {
+  const data = await fetchUserData(uid);
+
+  return data[jot_id];
+}
 
 export function getUserJots(
   uid: string,
@@ -106,4 +114,14 @@ export function getUserJots(
 
   // Return a function to unsubscribe from the snapshot listener when needed
   return unsubscribe;
+}
+
+export function logUserOut() {
+  return signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch(() => {
+      toast.error("Failed to log out. Please try again.");
+    });
 }

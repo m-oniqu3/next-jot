@@ -28,19 +28,19 @@
 @layer utilities {
   .textarea {
     border: none;
-    border-left: 8px solid rgba(55, 55, 54, 0.23);
+    border-left: 8px solid rgb(229 231 235);
     resize: none;
     padding: 0 1rem;
   }
 
   .textarea:focus {
     outline: none;
-    border-left: 8px solid rgba(55, 55, 54, 0.23);
+    border-left: 8px solid rgb(229 231 235);
     width: 100%;
   }
 
   .bg {
-    background-color: rgba(55, 55, 54, 0.23);
+    background-color: rgb(229 231 235)
   }
 
   @variants responsive {

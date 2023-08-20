@@ -9,39 +9,38 @@ import { useEffect, useState } from "react";
 
 /* eslint-disable react/no-unescaped-entities */
 const Jots = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [userName, setUserName] = useState("");
   const [jots, setJots] = useState<{ [key: string]: Jot }>({});
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") || "");
 
     if (user) {
+      setLoading(true);
       const userName = getUserName();
 
       const unsubscribe = getUserJots(user, (jots) => {
         setJots(jots);
       });
 
-      userName.then((name) => setUserName(name));
+      userName.then((name) => setUserName(name)).catch(() => setError(true));
 
       setLoading(false);
-
       return () => unsubscribe();
     }
   }, []);
 
-  const content = (() => {
-    if (loading) {
-      return <Loading />;
-    } else if (Object.keys(jots).length > 1) {
-      return <Notes data={jots} />;
-    } else if (Object.keys(jots).length === 0) {
-      return <Welcome userName={userName} />;
-    } else return <Loading />;
-  })();
+  if (error) return <p>error</p>;
 
-  console.log(userName, jots);
+  const content = (() => {
+    if (loading || !userName) {
+      return <Loading />;
+    } else if (jots && Object.keys(jots).length === 0) {
+      return <Welcome userName={userName} />;
+    } else return <Notes data={jots} />;
+  })();
 
   return content;
 };
