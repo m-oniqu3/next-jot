@@ -12,7 +12,7 @@ const NoteDetail = ({ params }: { params: { id: string } }) => {
   const contentRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user") || "");
+    const user = JSON.parse(String(localStorage.getItem("user")));
 
     if (user) {
       setLoading(true);

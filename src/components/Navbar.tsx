@@ -2,12 +2,14 @@
 
 import Button from "@/components/Button";
 import Container from "@/components/Container";
+import { logUserOut } from "@/components/firebase/firebase";
 import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
   const handleClick = () => {
     console.log("logout");
+    logUserOut();
   };
 
   return (

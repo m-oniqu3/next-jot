@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 import {
@@ -38,6 +39,11 @@ export function createNewUser(name: string, email: string, password: string) {
     .catch((error) => {
       console.log(error);
     });
+}
+
+export async function logUserIn(email: string, password: string) {
+  const data = await signInWithEmailAndPassword(auth, email, password);
+  return !!data.user.uid;
 }
 
 export async function storeUserInDb(uid: string, name: string, email: string) {
@@ -119,7 +125,7 @@ export function getUserJots(
 export function logUserOut() {
   return signOut(auth)
     .then(() => {
-      // Sign-out successful.
+      window.location.href = "/login";
     })
     .catch(() => {
       toast.error("Failed to log out. Please try again.");

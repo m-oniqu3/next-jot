@@ -1,5 +1,4 @@
 import Form from "@/components/form/Form";
-import FormTitle from "@/components/form/FormTitle";
 
 const Register = () => {
   const heading = "Create Account";
@@ -9,8 +8,12 @@ const Register = () => {
   return (
     <div className="max-w-xs mx-auto">
       <div className="flex flex-col h-[80vh] justify-center items-center gap-5">
-        <FormTitle heading={heading} paragraph={paragraph} variant="medium" />
-        <Form buttonText="Register" />
+        <Form
+          buttonText="register"
+          heading={heading}
+          paragraph={paragraph}
+          variant="medium"
+        />
       </div>
     </div>
   );

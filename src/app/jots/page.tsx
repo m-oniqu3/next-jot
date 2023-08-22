@@ -15,7 +15,7 @@ const Jots = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user") || "");
+    const user = JSON.parse(String(localStorage.getItem("user")));
 
     if (user) {
       setLoading(true);
